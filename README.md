@@ -5,11 +5,17 @@ This guide explains CRUD (Create, Read, Update, Delete) operations in MongoDB wi
 ## 1. Database & Collection Setup
    
 test> use library
+
 switched to db library
+
 library> db.books.insertMany([{ title: "The Alchemist", author: "Paulo Coelho", year: 1988, genres: ["Fiction", "Philosophy"], available: true, copies: 5 },
+
 ...   { title: "Atomic Habits", author: "James Clear", year: 2018, genres: ["Self-help"], available: true, copies: 10 },
+
 ...   { title: "Clean Code", author: "Robert C. Martin", year: 2008, genres: ["Programming"], available: false, copies: 0 },
+
 ...   { title: "Harry Potter", author: "J.K. Rowling", year: 1997, genres: ["Fantasy", "Adventure"], available: true, copies: 7 }
+
 ... ])
 {
   acknowledged: true,
