@@ -202,7 +202,7 @@ library> db.books.countDocuments()
 library> db.books.distinct('title')
 [ 'Atomic Habits', 'Clean Code', 'The Alchemist' ]
 
-## 9.READ operation
+## 9.ADVANCE SORT operation
 library> db.books.find().sort({year:1})
 
 [
