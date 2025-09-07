@@ -17,6 +17,7 @@ library> db.books.insertMany([{ title: "The Alchemist", author: "Paulo Coelho", 
 ...   { title: "Harry Potter", author: "J.K. Rowling", year: 1997, genres: ["Fantasy", "Adventure"], available: true, copies: 7 }
 
 ... ])
+
 {
   acknowledged: true,
   insertedIds: {
@@ -29,6 +30,7 @@ library> db.books.insertMany([{ title: "The Alchemist", author: "Paulo Coelho", 
 
 ## 2.READ Operations
 library> db.books.find()
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -39,6 +41,7 @@ library> db.books.find()
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518a'),
     title: 'Atomic Habits',
@@ -48,6 +51,7 @@ library> db.books.find()
     available: true,
     copies: 10
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -57,6 +61,7 @@ library> db.books.find()
     available: false,
     copies: 0
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518c'),
     title: 'Harry Potter',
@@ -70,6 +75,7 @@ library> db.books.find()
 
 ## 3.READ Operations
 library> db.books.findOne({author:'J.K. Rowling'})
+
 {
   _id: ObjectId('68bce9485571553e1373518c'),
   title: 'Harry Potter',
@@ -80,8 +86,10 @@ library> db.books.findOne({author:'J.K. Rowling'})
   copies: 7
 }
 
+
 ## 4.UPDATE Operations
 library> db.user.update({year:1997},{$set:{year:2000}})
+
 DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany, or bulkWrite.
 {
   acknowledged: true,
@@ -90,6 +98,7 @@ DeprecationWarning: Collection.update() is deprecated. Use updateOne, updateMany
   modifiedCount: 0,
   upsertedCount: 0
 }
+
 library> db.books.update({year:1997},{$set:{year:2000}})
 {
   acknowledged: true,
@@ -102,6 +111,7 @@ library> db.books.update({year:1997},{$set:{year:2000}})
 ## 5.READ Operations
 
 library> db.books.find()
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -112,6 +122,7 @@ library> db.books.find()
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518a'),
     title: 'Atomic Habits',
@@ -121,6 +132,7 @@ library> db.books.find()
     available: true,
     copies: 10
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -130,6 +142,7 @@ library> db.books.find()
     available: false,
     copies: 0
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518c'),
     title: 'Harry Potter',
@@ -144,8 +157,11 @@ library> db.books.find()
 ## 6.DELETE Operations
 
 library> db.books.deleteOne({title:'Harry Potter'})
+
 { acknowledged: true, deletedCount: 1 }
+
 library> db.books.find()
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -156,6 +172,7 @@ library> db.books.find()
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518a'),
     title: 'Atomic Habits',
@@ -165,6 +182,7 @@ library> db.books.find()
     available: true,
     copies: 10
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -186,6 +204,7 @@ library> db.books.distinct('title')
 
 ## 9.READ operation
 library> db.books.find().sort({year:1})
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -196,6 +215,7 @@ library> db.books.find().sort({year:1})
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -205,6 +225,7 @@ library> db.books.find().sort({year:1})
     available: false,
     copies: 0
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518a'),
     title: 'Atomic Habits',
@@ -215,10 +236,14 @@ library> db.books.find().sort({year:1})
     copies: 10
   }
 ]
+
  ## 10.INDEXES
 library> db.books.getIndexes()
+
 [ { v: 2, key: { _id: 1 }, name: '_id_' } ]
+
 library> db.books.find({year:{$gte:2001,$lt:2009}})
+
 [
   {
     _id: ObjectId('68bce9485571553e1373518b'),
@@ -230,9 +255,11 @@ library> db.books.find({year:{$gte:2001,$lt:2009}})
     copies: 0
   }
 ]
+
 ## 11.Comparison && Logical
 
 library> db.books.find({$or:[{year:2018},{year:2020}]})
+
 [
   {
     _id: ObjectId('68bce9485571553e1373518a'),
@@ -244,7 +271,9 @@ library> db.books.find({$or:[{year:2018},{year:2020}]})
     copies: 10
   }
 ]
+
 library>  db.books.find({$nor:[{year:2018},{year:2020}]})
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -255,6 +284,7 @@ library>  db.books.find({$nor:[{year:2018},{year:2020}]})
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -265,7 +295,9 @@ library>  db.books.find({$nor:[{year:2018},{year:2020}]})
     copies: 0
   }
 ]
+
 library> db.books.find({copies:{$exists:true}})
+
 [
   {
     _id: ObjectId('68bce9485571553e13735189'),
@@ -276,6 +308,7 @@ library> db.books.find({copies:{$exists:true}})
     available: true,
     copies: 5
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518a'),
     title: 'Atomic Habits',
@@ -285,6 +318,7 @@ library> db.books.find({copies:{$exists:true}})
     available: true,
     copies: 10
   },
+  
   {
     _id: ObjectId('68bce9485571553e1373518b'),
     title: 'Clean Code',
@@ -295,26 +329,36 @@ library> db.books.find({copies:{$exists:true}})
     copies: 0
   }
 ]
+
 library> db.books.find({copies:{$exists:false}})
 
 ## 11. DROP Operations
 
 library> db.books.drop()
+
 true
+
 library> show dbs
+
 admin       40.00 KiB
 car         80.00 KiB
 config     108.00 KiB
 local       40.00 KiB
 productdb  108.00 KiB
 todo        72.00 KiB
+
 library> use library
+
 already on db library
+
 library> db.books.find()
 
 library> db.dropDatabase()
+
 { ok: 1, dropped: 'library' }
+
 library> show dbs
+
 admin       40.00 KiB
 car         80.00 KiB
 config     108.00 KiB
